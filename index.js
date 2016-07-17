@@ -14,11 +14,11 @@ class CommandLineRunnerInterface {
   }
 
   exec(scripts) {
-    console.log("BEFORE", scripts);
-    console.log(scripts.length);
-    if (scripts.length > 1) scripts.join(" && ")
-    console.log("AFTER", scripts);
-    this.runner(scripts.join(" && "))
+    if (scripts.length > 1) {
+      this.runner(scripts.join(" && "))
+    } else {
+      this.runner(scripts)
+    }
   }
 }
 
