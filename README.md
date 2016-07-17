@@ -49,7 +49,7 @@ clri.exec(
 
 This library uses node, and node runs asynchronously.
 
-Currently I do not wait for each script to finish.
+Currently I do not wait for each script to finish before running the next one.
 
 The best method would be to use "&&" in one continuous script
 
@@ -66,5 +66,5 @@ let scripts = [
 ].join(" && ")
 // It will look like: "git status && git add . && git commit -m 'clri'"
 
-clri.exec(script)
+clri.exec(scripts)
 ```
