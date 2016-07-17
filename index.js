@@ -6,16 +6,19 @@ class CommandLineRunnerInterface {
   }
 
   runner(command) {
-    e(command, (error, stdout, stderr) => {
-        if (stdout)         console.log(`${stdout} ${this.end}`)
-        if (stderr)         console.log(`${stderr} ${this.end}`)
-        if (error !== null) console.log(`exec error: ${error} ${this.end}`)
+    return e(command, (error, stdout, stderr) => {
+        if (stdout)         this.output = `${stdout} ${this.end}`
+        if (stderr)         this.output = `${stderr} ${this.end}`
+        if (error !== null) this.output = `exec error: ${error} ${this.end}`
+        console.log(this.output)
     })
   }
 
   exec(scripts) {
-    if (Array.isArray(scripts)) return this.runner(scripts.join(" && "))
-                                       this.runner(scripts)
+    if (Array.isArray(scripts)) {
+      return Promise.resolve(this.runner(scripts.join(" && ")))
+    }
+    return Promise.resolve(this.runner(scripts))
   }
 }
 
