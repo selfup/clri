@@ -14,10 +14,10 @@ class CommandLineRunnerInterface {
   }
 
   exec(scripts) {
-    if (scripts.length > 1) {
-      this.runner(scripts.join(" && "))
+    if (Array.isArray(scripts)) {
+      return this.runner(scripts.join(" && "))
     } else {
-      this.runner(scripts)
+      return this.runner(scripts)
     }
   }
 }
