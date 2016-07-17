@@ -49,7 +49,7 @@ clri.exec(
 
 This library uses node, and node runs asynchronously.
 
-Currently I do not wait for each command to run.
+Currently I do not wait for each script to finish.
 
 The best method would be to use "&&" in one continuous script
 
