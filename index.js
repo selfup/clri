@@ -19,15 +19,4 @@ class CommandLineRunnerInterface {
   }
 }
 
-const clri = new CommandLineRunnerInterface
-
-let scripts = [
-  `git status`,
-  `git add .`,
-  `git commit -m 'clri'`
-]
-
-clri.exec(scripts)
-
-// module.exports = new CommandLineRunnerInterface
-
+module.exports = new CommandLineRunnerInterface
