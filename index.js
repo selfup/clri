@@ -13,11 +13,12 @@ class CommandLineRunnerInterface {
     })
   }
 
-  exec() {
-    const scripts = Array.from(arguments)
-    for (let i = 0; i < scripts.length; i++) {
-      this.runner(scripts[i])
-    }
+  exec(scripts) {
+    console.log("BEFORE", scripts);
+    console.log(scripts.length);
+    if (scripts.length > 1) scripts.join(" && ")
+    console.log("AFTER", scripts);
+    this.runner(scripts.join(" && "))
   }
 }
 
