@@ -1,0 +1,11 @@
+{
+  "name": "clri",
+  "version": "1.0.0",
+  "description": "Simple API for running command line scripts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "selfup",
+  "license": "MIT"
+}
