@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "Simple API for running command line scripts",
   "main": "index.js",
+  "keywords": [
+    "command line",
+    "bash",
+    "scripts",
+    "scripting"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
