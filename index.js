@@ -1,22 +1,31 @@
-const e = require('child_process').exec
+const childExec = require('child_process').exec
 
-class CommandLineRunnerInterface {
-  get end() {
-    return `\nExecuted script(s)`
+class Clri {
+  constructor() {
+    this.runAsync = this.runAsync.bind(this)
   }
 
-  runner(command) {
-    e(command, (error, stdout, stderr) => {
-        if (stdout)         console.log(`${stdout} ${this.end}`)
-        if (stderr)         console.log(`${stderr} ${this.end}`)
-        if (error !== null) console.log(`exec error: ${error} ${this.end}`)
+  runAsync(command) {
+    return childExec(command, (error, stdout, stderr) => {
+      if (stdout) console.log(stdout)
+      if (stderr) console.log(stderr)
+      if (error !== null) console.log(error)
     })
   }
 
   exec(scripts) {
-    if (Array.isArray(scripts)) return this.runner(scripts.join(" && "))
-                                       this.runner(scripts)
+    if (typeof scripts === 'string') this.runAsync(scripts)
+    if (Array.isArray(scripts)) this.runAsync(scripts.join(' && '))
+  }
+
+  run(command) {
+    const child = this.runAsync(command)
+
+    return new Promise((resolve, reject) => {
+      child.addListener('error', reject);
+      child.addListener('exit', resolve);
+    })
   }
 }
 
-module.exports = new CommandLineRunnerInterface
+module.exports = new Clri
